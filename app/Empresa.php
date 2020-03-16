@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Noticia;
 
 /**
  * Modelo de la tabla empresa
@@ -14,8 +15,7 @@ class Empresa extends Model
 
     public $guarded = [];
 
-    
-    public function empresas(){
-        return $this->belongsTo('App\Noticia');
+    public function noticias(){
+      return $this->hasMany(Noticia::class,'empresa_id');
     }
 }

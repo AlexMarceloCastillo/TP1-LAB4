@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Empresa;
+
 class Noticia extends Model
 {
     public $table = "noticias";
@@ -15,6 +17,6 @@ class Noticia extends Model
      * 'Trae' todos los reistros de empresas a través de la foreign Key 'empresa_id'
      */
     public function empresa(){
-        return $this->hasMany('App\Empresa');
+      return $this->belongsTo(Empresa::class,'empresa_id');
     }
 }

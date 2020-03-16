@@ -19,8 +19,9 @@ class CreateNoticiasTable extends Migration
             $table->text('resumen');
             $table->string('img',128);
             $table->string('publicada',1);
+            $table->text('contenido_html',20480);
             $table->time('fecha_publicacion');
-            
+
             $table->timestamps();
         });
     }
