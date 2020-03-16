@@ -1,0 +1,10 @@
+/*EDITAR EMPRESA*/
+.editar-form-empresa{
+}
+.editar-form-empresa form{
+  width: 50%;
+  border: 1px solid black;
+  height: auto;
+  margin: auto;
+  padding: 5%;
+}

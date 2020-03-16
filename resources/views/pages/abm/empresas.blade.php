@@ -50,9 +50,9 @@
                     <button type="submit" name="button" class="btn btn-danger">Eliminar</button>
                 </form>
                 <hr>
-                <button class="btn btn-primary" name="button">
-                  <a href="/editar/empresa/{{$empresa->id}}" style="color:white"> Editar </a>
-                </button>
+                      <a href="/editar/empresa/{{$empresa->id}}" style="color:white">
+                        <button class="btn btn-primary" name="button">Editar
+                  </button></a>
               </div>
           </td>
         </tr>
@@ -66,7 +66,7 @@
 
   </div>
 
-  
+
 
 <!-- Modal Crear Empresa-->
 <div class="modal fade" id="modalEmpresa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -94,13 +94,7 @@
                           required maxlength="9" minlength="9">
                   </div>
                   <hr>
-                  <label for="horarios">Horarios de Atencion</label>
-                  <div class="input-group mb-3">
-                      <input type="text" name="horario" class="form-control" placeholder=""
-                          required>
-                  </div>
-                  <hr>
-                  <label for="horarios">Horarios de Atencion</label>
+                  <label for="horario">Horarios de Atencion</label>
                   <div class="input-group mb-3">
                       <input type="text" name="horario" class="form-control" placeholder=""
                           required>
@@ -122,15 +116,15 @@
                           required>
                   </div>
                   <hr>
-                  <label for="longitud">Domicilio</label>
+                  <label for="domicilio">Domicilio</label>
                   <div class="input-group mb-3">
-                      <input type="text" name="longitud" class="form-control" placeholder=""
+                      <input type="text" name="domicilio" class="form-control" placeholder=""
                           required>
                   </div>
                   <hr>
-                  <label for="longitud">Email</label>
+                  <label for="email">Email</label>
                   <div class="input-group mb-3">
-                      <input type="email" name="longitud" class="form-control" placeholder=""
+                      <input type="email" name="email" class="form-control" placeholder=""
                           required>
                   </div>
                   <hr>

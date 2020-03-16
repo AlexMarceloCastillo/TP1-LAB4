@@ -18,10 +18,15 @@ Route::get('/{id}/home','EmpresaController@homeEmp');
 /*      ABM      */
 Route::get('/abm/empresa','ABMController@listAllEmpresas');
 Route::get('/abm/noticia','ABMController@listAllNoticias');
+Route::post('/crear/empresa','ABMController@agregarEmpresa');
+Route::post('crear/noticia','ABMController@agregarNoticia');
+Route::get('/editar/noticia/{id}','ABMController@editarNoticia');
+Route::get('/editar/empresa/{id}','ABMController@editarEmpresa');
+Route::post('/actualizar/noticia','ABMController@actualizarNoticia');
+Route::post('/actualizar/empresa','ABMController@actualizarEmpresa');
 Route::delete('/borrar/empresa/{id}','ABMController@borrarEmpresa');
 Route::delete('/borrar/noticia/{id}','ABMController@borrarNoticia');
-Route::post('/borrar/noticia','ABMController@borrarNoticia');
-Route::post('crear/noticia','ABMController@agregarNoticia');
+/* Contenido HTML */
 Route::get('/contenido',function(){
   return view('pages.tiny');
 });

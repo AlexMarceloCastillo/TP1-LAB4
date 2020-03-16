@@ -5,3 +5,15 @@ Modal Agregar Noticia
   width: 100%;
   height: 25vh;
 }
+
+/*EDITAR NOTICIAS*/
+
+.editar-form-noticia{
+}
+.editar-form-noticia form{
+  width: 50%;
+  border: 1px solid black;
+  height: auto;
+  margin: auto;
+  padding: 5%;
+}

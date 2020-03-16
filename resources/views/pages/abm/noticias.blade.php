@@ -40,7 +40,7 @@
             <th scope="row">{{$noticia->id}}</th>
             <td>{{$noticia->titulo}}</td>
             <td>{{$noticia->resumen}}</td>
-            <td>{{$noticia->img}}</td>
+            <td><a href="/storage/img/noticias/{{$noticia->img}}">Ver imagen</a></td>
             <td>{{$noticia->publicada}}</td>
             <td>{{$noticia->fecha_publicacion}}</td>
             <td>{{$noticia->created_at}}</td>
@@ -48,15 +48,15 @@
             <td>{{$noticia->empresa->denominacion}}</td>
               <td>
                 <div class="row">
-                    <form method="POST" action="/borrar/noticia/{{$notica->id}}" onsubmit="return confirmar()">
-                      {{ csrf_field() }}
+                    <form method="POST" action="/borrar/noticia/{{$noticia->id}}" onsubmit="return confirmar()">
+                      @csrf
                       {{ method_field('DELETE') }}
                         <button type="submit" name="button" class="btn btn-danger">Eliminar</button>
                     </form>
                   <hr>
-                  <button class="btn btn-primary" name="button">
-                    <a href="/editar/noticia/{{$noticia->id}}" style="color:white"> Editar </a>
-                  </button>
+                          <a href="/editar/noticia/{{$noticia->id}}" style="color:white">
+                              <button class="btn btn-primary" name="button"> Editar
+                      </button></a>
                 </div>
             </td>
           </tr>
@@ -145,7 +145,6 @@
                             Publicar
                           </label>
                         </div>
-                        <input type="text" name="" value="">
                         <div class="form-check">
                           <input class="form-check-input" type="radio" name="publicar" id="exampleRadios2" value="N">
                           <label class="form-check-label" for="exampleRadios2">
@@ -155,8 +154,8 @@
                         <hr>
 
                         <div class="input-group mb-3">
-                            <input type="text" readonly="true" name="fecha_publicacion" class="form-control"
-                                required value="{{getdate()['mday'].'/'.getdate()['mon'].'/'.getdate()['year']}}">
+                            <input type="datetime-local" name="fecha_publicacion" class="form-control"
+                                required>
                         </div>
                         <button type="submit" class="btn btn-reg btn-lg btn-block my-3 ">Crear Noticia</button>
                     </form>
