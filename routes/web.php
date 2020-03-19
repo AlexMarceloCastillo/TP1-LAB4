@@ -14,7 +14,6 @@
 Route::get('/','EmpresaController@listAllEmp');
 
 Route::get('/{id}/home','EmpresaController@homeEmp');
-
 /*      ABM      */
 Route::get('/abm/empresa','ABMController@listAllEmpresas');
 Route::get('/abm/noticia','ABMController@listAllNoticias');

@@ -13,9 +13,10 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    
+
     @yield('content')
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>
