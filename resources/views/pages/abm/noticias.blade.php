@@ -10,7 +10,6 @@
 @endphp
 
 @section('content')
-
     @if (session('message') == 'ELIMINAR')
       <script type="text/javascript">
       window.addEventListener("load", function() {
@@ -52,11 +51,11 @@
                       @csrf
                       {{ method_field('DELETE') }}
                         <button type="submit" name="button" class="btn btn-danger">Eliminar</button>
+
                     </form>
                   <hr>
-                          <a href="/editar/noticia/{{$noticia->id}}" style="color:white">
-                              <button class="btn btn-primary" name="button"> Editar
-                      </button></a>
+                      <button class="btn btn-primary" name="button" onclick="editar()"> Editar
+                      </button>
                 </div>
             </td>
           </tr>
@@ -66,7 +65,7 @@
       </tbody>
     </table>
     <button type="button" class="btn btn-success mb-3" name="button" data-toggle="modal"
-        data-target="#modalNoticia">Agregar</button>
+        data-target="#modalNoticia" onclick="agregar()">Agregar</button>
     </div>
 
 
@@ -164,5 +163,6 @@
         </div>
     </div>
     <!-- -->
+  
 
 @endsection

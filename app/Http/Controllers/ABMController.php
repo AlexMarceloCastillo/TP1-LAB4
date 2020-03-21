@@ -31,14 +31,9 @@ class ABMController extends Controller
        $empresa->save();
        return redirect('/abm/empresa');
    }
-   //Editar Empresa
-   public function editarEmpresa($id){
-       $empresa = Empresa::findOrFail($id);
-       return view('pages.editar.editarEmpresa',compact('empresa'));
-   }
    //Actualizar Empresa
    public function actualizarEmpresa(Request $form){
-      $empresa = Empresa::findOrFail($form['id']);
+      $empresa = Empresa::findOrFail($form['idEmpresa']);
       $empresa->denominacion = $form['denominacion'];
       $empresa->telefono = $form['telefono'];
       $empresa->hs_atencion = $form['horario'];
@@ -79,6 +74,7 @@ class ABMController extends Controller
        $noticia->publicada = $form['publicar'];
        $noticia->fecha_publicacion = $form['fecha_publicacion'];
        $noticia->empresa_id = $form['empresa'];
+       $noticia->contenido_html = $form['contenido_html'];
        $noticia->save();
        return redirect('/abm/noticia');
    }

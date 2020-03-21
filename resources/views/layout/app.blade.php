@@ -17,6 +17,7 @@
     @yield('content')
 
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js">
+    </script><script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
