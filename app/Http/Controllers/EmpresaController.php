@@ -23,7 +23,8 @@ class EmpresaController extends Controller
      */
     public function homeEmp($id){
         $empresa = Empresa::find($id);
-        $noticias = Noticia::latest()->take(5)->get();
+        session(['actual' => $empresa]);
+        $noticias = Noticia::latest()->take(5)->where('empresa_id',$empresa->id)->get();
         $vac = compact('empresa','noticias');
         return view('pages.home',$vac);
     }

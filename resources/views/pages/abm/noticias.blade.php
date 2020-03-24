@@ -54,7 +54,7 @@
 
                     </form>
                   <hr>
-                      <button class="btn btn-primary" name="button" onclick="editar()"> Editar
+                      <button class="btn btn-primary" name="button" onclick="editar({{$noticia}})"> Editar
                       </button>
                 </div>
             </td>
@@ -163,6 +163,6 @@
         </div>
     </div>
     <!-- -->
-  
+
 
 @endsection

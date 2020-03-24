@@ -24,6 +24,8 @@ Route::post('/actualizar/noticia','ABMController@actualizarNoticia');
 Route::post('/actualizar/empresa','ABMController@actualizarEmpresa');
 Route::delete('/borrar/empresa/{id}','ABMController@borrarEmpresa');
 Route::delete('/borrar/noticia/{id}','ABMController@borrarNoticia');
+Route::get('/detalle/{id}','NoticiaController@detalle')->name('detalle');
+Route::get('/busqueda','NoticiaController@busqueda')->name('busqueda');
 /* Contenido HTML */
 Route::get('/contenido',function(){
   return view('pages.tiny');

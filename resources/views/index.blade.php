@@ -19,12 +19,13 @@
                 </tr>
             </thead>
             <tbody>
+            @foreach ($empresas as $empresa)
                 <tr>
-                    @foreach ($empresas as $empresa)
                     <td>{{$empresa->denominacion}}</td>
                     <td><a href="/{{$empresa->id}}/home">Ver Url de {{$empresa->denominacion}}</a></td>
-                    @endforeach
+
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
