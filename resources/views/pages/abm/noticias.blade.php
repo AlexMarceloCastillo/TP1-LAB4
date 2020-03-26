@@ -47,15 +47,9 @@
             <td>{{$noticia->empresa->denominacion}}</td>
               <td>
                 <div class="row">
-                    <form method="POST" action="/borrar/noticia/{{$noticia->id}}" onsubmit="return confirmar()">
-                      @csrf
-                      {{ method_field('DELETE') }}
-                        <button type="submit" name="button" class="btn btn-danger">Eliminar</button>
-
-                    </form>
-                  <hr>
-                      <button class="btn btn-primary" name="button" onclick="editar()"> Editar
-                      </button>
+                      <button type="button" name="button" class="btn btn-danger" onclick="borrarRegistro({{$noticia->id}},this,1)">Eliminar</button>
+                      <hr>
+                      <button class="btn btn-primary" name="button" onclick="editar()">Editar</button>
                 </div>
             </td>
           </tr>
@@ -163,6 +157,6 @@
         </div>
     </div>
     <!-- -->
-  
+
 
 @endsection

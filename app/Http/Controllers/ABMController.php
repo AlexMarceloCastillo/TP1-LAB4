@@ -14,51 +14,52 @@ class ABMController extends Controller
 {
     //ABM de Empresas
    public function listAllEmpresas(){
-       $empresas = Empresa::all();
+       $empresas = Empresa::paginate(10);
        return view('pages.abm.empresas',compact('empresas'));
    }
    //Agregar Empresa
-   public function agregarEmpresa(Request $form){
-       $empresa = new Empresa();
-       $empresa->denominacion = $form['denominacion'];
-       $empresa->telefono = $form['telefono'];
-       $empresa->hs_atencion = $form['horario'];
-       $empresa->q_somos = $form['quienes_somos'];
-       $empresa->latitud = $form['latitud'];
-       $empresa->longitud = $form['longitud'];
-       $empresa->domicilio = $form['domicilio'];
-       $empresa->email = $form['email'];
-       $empresa->save();
-       return redirect('/abm/empresa');
+   public function agregarEmpresa(Request $request){
+      $empresa = new Empresa();
+      $empresa->denominacion = $request['denominacion'];
+      $empresa->telefono = $request['telefono'];
+      $empresa->hs_atencion = $request['horario'];
+      $empresa->q_somos = $request['q_somos'];
+      $empresa->latitud = $request['latitud'];
+      $empresa->longitud = $request['longitud'];
+      $empresa->domicilio = $request['domicilio'];
+      $empresa->email = $request['email'];
+      $empresa->save();
+      return response()->json($empresa);
    }
    //Actualizar Empresa
-   public function actualizarEmpresa(Request $form){
-      $empresa = Empresa::findOrFail($form['idEmpresa']);
-      $empresa->denominacion = $form['denominacion'];
-      $empresa->telefono = $form['telefono'];
-      $empresa->hs_atencion = $form['horario'];
-      $empresa->q_somos = $form['quienes_somos'];
-      $empresa->latitud = $form['latitud'];
-      $empresa->longitud = $form['longitud'];
-      $empresa->domicilio = $form['domicilio'];
-      $empresa->email = $form['email'];
+   public function actualizarEmpresa($id, Request $request){
+      $empresa = Empresa::findOrFail($id);
+      $empresa->denominacion = $request['denominacion'];
+      $empresa->telefono = $request['telefono'];
+      $empresa->hs_atencion = $request['horario'];
+      $empresa->q_somos = $request['q_somos'];
+      $empresa->latitud = $request['latitud'];
+      $empresa->longitud = $request['longitud'];
+      $empresa->domicilio = $request['domicilio'];
+      $empresa->email = $request['email'];
       $empresa->update();
-      return redirect('/abm/empresa');
+      return response()->json($empresa);
    }
 
    //Borrar empresa
    public function borrarEmpresa($id){
-       $empresa = Empresa::findOrFail($id);
-       foreach ($empresa->noticias as $key => $noticias) {
-         $noticias->delete();
-       }
-       $empresa->delete();
-       return redirect('/abm/empresa')->with('message','ELIMINAR');
+      $empresa = Empresa::findOrFail($id);
+      foreach ($empresa->noticias as $key => $noticias) {
+        $noticias->delete();
+      }
+      $empresa->delete();
+      $response = array('status' => 'success','msg' => 'Element delete successfully',);
+      return response()->json($response);
    }
 
    //ABM de Noticias
    public function listAllNoticias(){
-       $noticias = Noticia::all();
+       $noticias = Noticia::paginate(10);
        $empresas = Empresa::all();
        $vac = compact('noticias','empresas');
        return view('pages.abm.noticias',$vac);
@@ -105,8 +106,8 @@ class ABMController extends Controller
    //Borrar Noticia
    public function borrarNoticia($id){
        $noticia = Noticia::findOrFail($id);
-       $noticia->empresa->delete();
        $notica->delete();
-       return redire('/abm/notica')->with('message','ELIMINAR');
+       $response = array('status' => 'success','msg' => 'Element delete successfully',);
+       return response()->json($response);
    }
 }

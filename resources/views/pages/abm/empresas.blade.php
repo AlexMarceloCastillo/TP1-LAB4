@@ -1,21 +1,13 @@
-@extends('layout.app')
+@extends('layout.admin')
 
 @push('styles')
-{{-- <link rel="stylesheet" href="{{ asset('css/home.css') }}"> --}}
 @endpush
 
 @section('title','ABM-Empresa')
 
 @section('content')
-  @if (session('message') == 'ELIMINAR')
-    <script type="text/javascript">
-    window.addEventListener("load", function() {
-    alert('Registro Eliminado Exitosamente')
-    })
-    </script>
-  @endif
   <div class="container">
-    <table class="table">
+    <table class="table table-empresa">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -33,7 +25,7 @@
     <tbody>
       @forelse ($empresas as $key => $empresa)
         <tr>
-          <th scope="row">{{$empresa->id}}</th>
+          <td scope="row">{{$empresa->id}}</td>
           <td>{{$empresa->denominacion}}</td>
           <td>{{$empresa->telefono}}</td>
           <td>{{$empresa->hs_atencion}}</td>
@@ -44,24 +36,9 @@
           <td>{{$empresa->email}}</td>
             <td>
               <div class="row">
-                <form method="POST" action="/borrar/empresa/{{$empresa->id}}" onsubmit="return confirmar()">
-                  {{ csrf_field() }}
-                  {{ method_field('DELETE') }}
-                    <button type="submit" name="button" class="btn btn-danger">Eliminar</button>
-                    <script type="text/javascript">
-                    function confirmar(){
-                      if(confirm('¿Esta seguro que desea eliminar?')){
-                        return true;
-                      }else {
-                        return false;
-                      }
-                    }
-                    </script>
-                </form>
-                <hr>
-                        <button type="button" class="btn btn-primary mb-3" name="button" data-toggle="modal"
-                            data-target="#modalEmpresa" onclick="editar({{$empresa}})">Editar
-                  </button>
+                    <button type="button" name="button" class="btn btn-danger mb-3" onclick="borrarRegistro({{$empresa->id}},this,2)">Eliminar</button>
+                    <hr>
+                    <button type="button" class="btn btn-primary mb-3" name="button" data-toggle="modal" data-target="#modalEmpresa" onclick="editarEmpresa({{$empresa}},this)">Editar</button>
               </div>
           </td>
         </tr>
@@ -70,8 +47,9 @@
       @endforelse
     </tbody>
   </table>
+  {{$empresas->links()}}
   <button type="button" class="btn btn-success mb-3" name="button" data-toggle="modal"
-      data-target="#modalEmpresa" onclick="agregar()">Agregar</button>
+      data-target="#modalEmpresa">Agregar</button>
 
   </div>
 
@@ -89,7 +67,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="formModal" action="/crear/empresa" method="post">
+                <form class="empresa-form" action="" method="post">
                   @csrf
                   <label for="denominacion">Denominacion de la empresa</label>
                   <div class="input-group mb-3">
@@ -137,49 +115,12 @@
                           required>
                   </div>
                   <hr>
-                  <button id="submitModal" type="submit" class="btn btn-reg btn-lg btn-block my-3 ">Crear Empresa</button>
+                  <button id="submitModal" type="submit" class="btn btn-reg btn-lg btn-block my-3 btn-submit-empresa">Crear Empresa</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-  var formModal = document.querySelector('form.formModal');
-  function agregar(){
-    var hijos = formModal.children;
-    formModal.removeAttribute('action');
-    formModal.setAttribute('action','/crear/empresa')
-    document.querySelector('input.name').value = "";
-    document.querySelector('input.telefono').value = "";
-    document.querySelector('input.horario').value = "";
-    document.querySelector('textarea.who').innerHTML = "";
-    document.querySelector('input.lat').value = "";
-    document.querySelector('input.long').value = "";
-    document.querySelector('input.dom').value = "";
-    document.querySelector('input.email').value = "";
-    document.getElementById('exampleModalLabel').innerHTML = "Agregar Empresa"
-    document.getElementById('submitModal').innerHTML = "Crear Empresa";
-  }
-  function editar(empresa){
-    var input = document.createElement('input');
-    input.setAttribute('type','hidden');
-    input.setAttribute('name','idEmpresa');
-    input.setAttribute('value',empresa.id);
-    formModal.append(input);
-    formModal.removeAttribute('action');
-    formModal.setAttribute('action','/actualizar/empresa')
-    document.getElementById('exampleModalLabel').innerHTML = "Editar Empresa"
-    document.getElementById('submitModal').innerHTML = "Actualizar Empresa";
-    document.querySelector('input.name').value = empresa.denominacion;
-    document.querySelector('input.telefono').value = empresa.telefono;
-    document.querySelector('input.horario').value = empresa.hs_atencion;
-    document.querySelector('textarea.who').innerHTML = empresa.q_somos;
-    document.querySelector('input.lat').value = empresa.latitud;
-    document.querySelector('input.long').value = empresa.longitud;
-    document.querySelector('input.dom').value = empresa.domicilio;
-    document.querySelector('input.email').value = empresa.email;
-  }
-</script>
 <!-- -->
 @endsection

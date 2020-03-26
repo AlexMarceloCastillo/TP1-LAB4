@@ -21,10 +21,12 @@ Route::post('/crear/empresa','ABMController@agregarEmpresa');
 Route::post('crear/noticia','ABMController@agregarNoticia');
 Route::get('/editar/noticia/{id}','ABMController@editarNoticia');
 Route::post('/actualizar/noticia','ABMController@actualizarNoticia');
-Route::post('/actualizar/empresa','ABMController@actualizarEmpresa');
+Route::put('/actualizar/empresa/{id}','ABMController@actualizarEmpresa');
 Route::delete('/borrar/empresa/{id}','ABMController@borrarEmpresa');
 Route::delete('/borrar/noticia/{id}','ABMController@borrarNoticia');
 /* Contenido HTML */
 Route::get('/contenido',function(){
   return view('pages.tiny');
 });
+/*DETALLE NOTICIA*/
+Route::get('/detalle/{id}','DetalleController@detalleNoticia');
