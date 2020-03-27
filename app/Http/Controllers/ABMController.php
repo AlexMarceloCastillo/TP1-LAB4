@@ -106,8 +106,14 @@ class ABMController extends Controller
    //Borrar Noticia
    public function borrarNoticia($id){
        $noticia = Noticia::findOrFail($id);
+<<<<<<< HEAD
        $notica->delete();
        $response = array('status' => 'success','msg' => 'Element delete successfully',);
        return response()->json($response);
+=======
+
+       $noticia->delete();
+       return redirect('/abm/noticia')->with('message','ELIMINAR');
+>>>>>>> cfed1e9d22761d19c0af6b7f13a669d694c0ed03
    }
 }
