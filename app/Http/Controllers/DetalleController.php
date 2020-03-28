@@ -12,6 +12,6 @@ class DetalleController extends Controller
 
     public function detalleNoticia($id){
       $noticia = Noticia::findOrFail($id);
-      return view('pages.detalle',compact('noticia'));
+      return view('pages.paginas.detalle',compact('noticia'));
     }
 }

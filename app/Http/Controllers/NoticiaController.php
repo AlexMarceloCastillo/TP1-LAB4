@@ -9,11 +9,6 @@ use App\Noticia;
 
 class NoticiaController extends Controller
 {
-    public function detalle($id){
-        $noticia=Noticia::find($id);
-        $vac=compact('noticia');
-        return view('pages.paginas.detalle',$vac);
-    }
     public function busqueda(Request $form){
         $busqueda=$form["busqueda"];
         $empresa=session('actual');

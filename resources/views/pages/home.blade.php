@@ -22,10 +22,6 @@
 
 @section('title','HOME')
 <link rel="shortcut icon" href="/img/favicon.ico" />
-<script>
-    jjQuery('#camera').camera();
-
-</script>
 
 @section('content')
 
@@ -153,55 +149,11 @@
     <!--========================================================
                             FOOTER
   =========================================================-->
-    <footer class="top-border">
-        <section class="well well2 wow fadeIn  bg1" data-wow-duration='3s'>
-            <div class="container">
-                <h2 class="txt-pr">
-                    Donde estamos
-                </h2>
-            </div>
-        </section>
-        <div class="map">
-            <div id="google-map" class="map_model" data-zoom="11"></div>
-            <ul class="map_locations">
-                <li data-x="-73.9874068" data-y="40.643180" data-basic="images/gmap_marker.png"
-                    data-active="images/gmap_marker_active.png">
-                    <div class="location">
-                        <h3 class="txt-clr1" style="color:black">
-                            <small>
-                                {{$empresa->denominacion}}
-                            </small>
-                        </h3>
-                        <address>
-                            <dl>
-                                <dt>Telefono: </dt>
-                                <dd class="phone" style="color:black"><a href="callto:#"> {{$empresa->telefono}}</a>
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>Domicilio: </dt>
-                                <dd style="color:black">{{$empresa->domicilio}}</dd>
-                            </dl>
-                            <dl>
-                                <dt> E-mail: </dt>
-                                <dd style="color:black"><a href="mailto:#">{{$empresa->email}}</a></dd>
-                            </dl>
-                        </address>
+    <footer>
 
-                    </div>
-                </li>
-            </ul>
-        </div>
+      <div class="" id="map">
 
-        <section class="well1">
-            <div class="container">
-                <p class="rights">
-                    {{$empresa->denominacion}} &#169; <span id="copyright-year"></span>
-                    <a href="index-5.html">Privacy Policy</a>
-                    <!-- {%FOOTER_LINK} -->
-                </p>
-            </div>
-        </section>
+      </div>
     </footer>
 </div>
 
@@ -226,18 +178,7 @@
     // Initialize and add the map
     function initMap() {
         // The location of Uluru
-        var uluru = {
-            lat: {
-                {
-                    $empresa - > latitud
-                }
-            },
-            lng: {
-                {
-                    $empresa - > longitud
-                }
-            }
-        };
+        var uluru = {lat:{{$empresa->latitud}},lng:{{$empresa->longitud}}};
         // The map, centered at Uluru
         var map = new google.maps.Map(
             document.getElementById('map'), {
@@ -269,9 +210,7 @@
 * The key parameter will contain your own API key (which is not needed for this tutorial)
 * The callback parameter executes the initMap() function
 -->
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWDWxeewwyzEH_V_Fsk64WCetmnTodlEI&callback=initMap">
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWDWxeewwyzEH_V_Fsk64WCetmnTodlEI&callback=initMap"></script>
 </div>
 
 

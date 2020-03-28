@@ -64,7 +64,7 @@
 					<tr>
 						<td>
 							<a href="/detalle/{{$noticia->id}}">
-								<img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="img">
+								<img width="250px" height="50px" class="imgNoticia" src="/storage/img/noticias/{{$noticia->img}}" alt="img">
 							</a>
 						</td>
 						<td width="25"></td>

@@ -33,15 +33,9 @@
 
     @yield('content')
 
-    <div class="masterFooter">
-        @include('component.footer')
-    </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js">
-    </script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript" src="/js/detalle.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 
 </html>

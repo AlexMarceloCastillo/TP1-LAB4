@@ -14,7 +14,7 @@ class ABMController extends Controller
 {
     //ABM de Empresas
    public function listAllEmpresas(){
-       $empresas = Empresa::paginate(10);
+       $empresas = Empresa::paginate(6);
        return view('pages.abm.empresas',compact('empresas'));
    }
    //Agregar Empresa
@@ -59,7 +59,7 @@ class ABMController extends Controller
 
    //ABM de Noticias
    public function listAllNoticias(){
-       $noticias = Noticia::paginate(10);
+       $noticias = Noticia::paginate(6);
        $empresas = Empresa::all();
        $vac = compact('noticias','empresas');
        return view('pages.abm.noticias',$vac);
@@ -106,14 +106,10 @@ class ABMController extends Controller
    //Borrar Noticia
    public function borrarNoticia($id){
        $noticia = Noticia::findOrFail($id);
-<<<<<<< HEAD
        $notica->delete();
        $response = array('status' => 'success','msg' => 'Element delete successfully',);
        return response()->json($response);
-=======
-
        $noticia->delete();
        return redirect('/abm/noticia')->with('message','ELIMINAR');
->>>>>>> cfed1e9d22761d19c0af6b7f13a669d694c0ed03
    }
 }

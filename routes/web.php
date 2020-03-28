@@ -12,6 +12,7 @@
 */
 
 Route::get('/','EmpresaController@listAllEmp');
+Route::get('/index','EmpresaController@listAllEmp');
 
 Route::get('/{id}/home','EmpresaController@homeEmp');
 /*      ABM      */
@@ -24,7 +25,9 @@ Route::post('/actualizar/noticia','ABMController@actualizarNoticia');
 Route::put('/actualizar/empresa/{id}','ABMController@actualizarEmpresa');
 Route::delete('/borrar/empresa/{id}','ABMController@borrarEmpresa');
 Route::delete('/borrar/noticia/{id}','ABMController@borrarNoticia');
+/*DETALLE*/
 Route::get('/detalle/{id}','NoticiaController@detalle')->name('detalle');
+/*BUSQUEDA*/
 Route::get('/busqueda','NoticiaController@busqueda')->name('busqueda');
 /* Contenido HTML */
 Route::get('/contenido',function(){

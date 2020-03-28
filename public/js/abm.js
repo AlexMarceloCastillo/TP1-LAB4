@@ -55,7 +55,7 @@ $(".btn-submit-empresa").click(function(e){
         $("input[name=denominacion]").val("");
         $("input[name=telefono]").val("");
         $("input[name=horario]").val("");
-        $("input[name=quienes_somos]").val("");
+        $("input[name=quienes_somos]").html("");
         $("input[name=latitud]").val("");
         $("input[name=longitud]").val("");
         $("input[name=domicilio]").val("");
@@ -143,6 +143,7 @@ function editarEmpresa(empresa,boton){
       $(".btn-put-empresa").remove();
       $(".btn-submit-empresa").show();
       $(".modal-title").html("Agregar Empresa");
+
       });
 
 }
@@ -151,7 +152,7 @@ $("#modalEmpresa").on('hidden.bs.modal', function () {
   $("input[name=denominacion]").val("");
   $("input[name=telefono]").val("");
   $("input[name=horario]").val("");
-  $("input[name=quienes_somos]").val("");
+  $("input[name=quienes_somos]").html("");
   $("input[name=latitud]").val("");
   $("input[name=longitud]").val("");
   $("input[name=domicilio]").val("");

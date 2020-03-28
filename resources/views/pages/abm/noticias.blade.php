@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.admin')
 
 
 @push('styles')
@@ -10,15 +10,9 @@
 @endphp
 
 @section('content')
-@if (session('message') == 'ELIMINAR')
-<script type="text/javascript">
-    window.addEventListener("load", function () {
-        alert('Registro Eliminado Exitosamente')
-    })
-
-</script>
-@endif
 <div class="container">
+
+  {{$noticias->links()}}
     <table class="table">
         <thead>
             <tr>
@@ -39,7 +33,7 @@
             <tr>
                 <th scope="row">{{$noticia->id}}</th>
                 <td>{{$noticia->titulo}}</td>
-                <td>{{$noticia->resumen}}</td>
+                <td><button type="button" class="btn btn-info" name="button" data-toggle="modal" data-target="#resumen"  onclick='verResumen({{$noticia}})'>Ver</button></td>
                 <td><a href="/storage/img/noticias/{{$noticia->img}}">Ver imagen</a></td>
                 <td>{{$noticia->publicada}}</td>
                 <td>{{$noticia->fecha_publicacion}}</td>
@@ -51,7 +45,9 @@
                         <button type="button" name="button" class="btn btn-danger"
                             onclick="borrarRegistro({{$noticia->id}},this,1)">Eliminar</button>
                         <hr>
-                        <button class="btn btn-primary" name="button" onclick="editar()">Editar</button>
+                        <a href="/editar/noticia/{{$noticia->id}}"> <button type="button" name="button" class="btn btn-primary">
+                          Editar
+                        </button> </a>
                     </div>
                 </td>
             </tr>
@@ -60,11 +56,41 @@
             @endforelse
         </tbody>
     </table>
-    <button type="button" class="btn btn-success mb-3" name="button" data-toggle="modal" data-target="#modalNoticia"
-        onclick="agregar()">Agregar</button>
+    {{$noticias->links()}}
+    <button type="button" class="btn btn-success mb-3" name="button" data-toggle="modal" data-target="#modalNoticia">Agregar</button>
 </div>
 
 
+
+<!-- Modal Quienes Somos-->
+<div class="modal fade" id="resumen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Resumen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body resumen">
+        <p>
+
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function verResumen(noticia){
+    $('.resumen p').html(noticia.resumen);
+    $("#resumen").on('hidden.bs.modal', function () {
+    $('#resumen p').html("");
+    });
+  }
+</script>
 <!-- Modal Crear Noticia-->
 <div class="modal fade" id="modalNoticia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -94,7 +120,7 @@
                     <div class="input-group mb-3">
                         <input id="seleccionImagen" type="file" name="imagen_noticia" value="" required
                             accept="image/*">
-                        <img src="/img/noticias.png" alt="" id="imgInput" rows="2">
+                        <img src="/img/noticias.jpg" alt="" id="imgInput" rows="2">
                         <script type="text/javascript">
                             const $seleccionArchivos = document.querySelector("#seleccionImagen"),
                                 $imagenPrevisualizacion = document.querySelector("#imgInput");

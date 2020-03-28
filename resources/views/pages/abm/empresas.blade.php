@@ -7,6 +7,7 @@
 
 @section('content')
   <div class="container">
+    {{$empresas->links()}}
     <table class="table table-empresa">
     <thead>
       <tr>
@@ -26,10 +27,10 @@
       @forelse ($empresas as $key => $empresa)
         <tr>
           <td scope="row">{{$empresa->id}}</td>
-          <td>{{$empresa->denominacion}}</td>
+          <td><a href="/{{$empresa->id}}/home">{{$empresa->denominacion}}</a></td>
           <td>{{$empresa->telefono}}</td>
           <td>{{$empresa->hs_atencion}}</td>
-          <td>{{$empresa->q_somos}}</td>
+          <td><button type="button" class="btn btn-info" name="button" data-toggle="modal" data-target="#q_Somos"  onclick='mostrarQuienesSomos({{$empresa}})'>Ver</button></td>
           <td>{{$empresa->latitud}}</td>
           <td>{{$empresa->longitud}}</td>
           <td>{{$empresa->domicilio}}</td>
@@ -55,6 +56,35 @@
 
 
 
+<!-- Modal Quienes Somos-->
+<div class="modal fade" id="q_Somos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">¿QUIENES SOMOS?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body quienes_somos">
+        <p>
+
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function mostrarQuienesSomos(empresa){
+    $('.quienes_somos p').html(empresa.q_somos);
+    $("#q_Somos").on('hidden.bs.modal', function () {
+    $('#q_Somos p').html("");
+    });
+  }
+</script>
 <!-- Modal Crear Empresa-->
 <div class="modal fade" id="modalEmpresa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

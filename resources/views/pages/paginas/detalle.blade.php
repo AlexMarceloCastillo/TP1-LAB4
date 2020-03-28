@@ -30,7 +30,7 @@
 	  <div id="stuck_container" class="stuck_container">
         <div class="container">
 
-        <form class="search-form" action="/busqueda" method="GET" accept-charset="utf-8">
+        <form class="search-form" action="/busqueda" method="GET" accept-charset="utf-8" style="position: sticky;top:0;z-index: 1;">
            @csrf
           <label class="search-form_label">
             <input class="search-form_input" type="text" name="busqueda" autocomplete="off" placeholder=""/>
@@ -55,7 +55,7 @@
 
         <div class="container">
 			<center>
-				<div id="imagenPrincipal" style="height: 450px; background-image: url('http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626'); background-repeat: no-repeat;background-size: cover;">
+				<div id="imagenPrincipal" style="height: 450px; background-image: url('http://localhost:8000/storage/img/noticias/{{$noticia->img}}'); background-repeat: no-repeat;background-size: cover;">
 					<div style="text-align:left; background-color: rgba(1,1,1,0.5);color: #ffffff;font-size: 16px;line-height: 50px;">
 					 {{$noticia->titulo}}
 					</div>
@@ -75,7 +75,9 @@
                 </dt>
 				<hr>
                 <dd>
-					{{$noticia->contenido_html}}
+          @php
+            echo $noticia->contenido_html;
+          @endphp
 				</dd>
               </dl>
             </div>
