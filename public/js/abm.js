@@ -38,16 +38,16 @@ $(".btn-submit-empresa").click(function(e){
         "<td>"+data.denominacion+"</td>"+
         "<td>"+data.telefono+"</td>"+
         "<td>"+data.hs_atencion+"</td>"+
-        "<td>"+data.q_somos+"</td>"+
+        "<td>"+"<td><button type='button' class='btn btn-info' name='button' data-toggle='modal' data-target='#q_Somos'  onclick='mostrarQuienesSomos("+ JSON.stringify(data) +")'>Ver</button></td>"++"</td>"+
         "<td>"+data.latitud+"</td>"+
         "<td>"+data.longitud+"</td>"+
         "<td>"+data.domicilio+"</td>"+
         "<td>"+data.email+"</td>"+
         "<td>"+
           "<div class='row'>"+
-            "<button type='button' onclick='borrarEmpresa({{$empresa->id}},this)' name='button' class='btn-delete btn btn-danger'>Eliminar</button>"+
+            "<button type='button' onclick='borrarEmpresa("+data->id+",this)' name='button' class='btn-delete btn btn-danger'>Eliminar</button>"+
             "<hr>"+
-            "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalEmpresa' onclick='editarEmpresa({{$empresa}},this)'>Editar</button>"+
+            "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalEmpresa' onclick='editarEmpresa("+ JSON.stringify(data) +",this)'>Editar</button>"+
           "</div>"+
         "</td>"+
         "</tr>";
@@ -72,6 +72,7 @@ $(".btn-submit-empresa").click(function(e){
 /*ABM EDITAR EMPRESA*/
 function editarEmpresa(empresa,boton){
    $("input[name=denominacion]").val(empresa.denominacion);
+   console.log($("input[name=telefono]"));
    $("input[name=telefono]").val(empresa.telefono);
    $("input[name=horario]").val(empresa.hs_atencion);
    $("textarea[name=quienes_somos]").val(empresa.q_somos);
@@ -107,7 +108,7 @@ function editarEmpresa(empresa,boton){
                   "<td>"+data.denominacion+"</td>"+
                   "<td>"+data.telefono+"</td>"+
                   "<td>"+data.hs_atencion+"</td>"+
-                  "<td>"+data.q_somos+"</td>"+
+                  "<td><button type='button' class='btn btn-info' name='button' data-toggle='modal' data-target='#q_Somos'  onclick='mostrarQuienesSomos("+ JSON.stringify(data) +")'>Ver</button></td>"+
                   "<td>"+data.latitud+"</td>"+
                   "<td>"+data.longitud+"</td>"+
                   "<td>"+data.domicilio+"</td>"+
@@ -162,7 +163,7 @@ $("#modalEmpresa").on('hidden.bs.modal', function () {
 function borrarRegistro(id,boton,tipo){
   var url;
  switch (tipo) {
-   case 1: url = 'http://localhost:8000/borrar/noticia/';
+   case 1: url = 'http://localhost:8000/borrar/noticia/';break;
    case 2: url = 'http://localhost:8000/borrar/empresa/';break;
  }
  if(confirm('¿ESTA SEGURO DE BORRAR ESTE REGISTRO?')){
@@ -188,7 +189,7 @@ function validarCamposEmpresa(denominacion,telefono,horario,q_somos,latitud,long
     return 1;
   }else if(denominacion.length <=4 || telefono.length <=4 || q_somos.length <=4 || latitud.length <=4 || longitud.length <=4 || domicilio.length <=4 || email.length <=4){
     return 2;
-  }else if(horario.length <=10){
+  }else if(horario.length <=5){
     return 3;
   }else if(regex.test(email) == false){
     return 4;

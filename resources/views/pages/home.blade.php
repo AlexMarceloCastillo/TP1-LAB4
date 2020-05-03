@@ -175,8 +175,30 @@
 
 </style>
 <script>
+
+
     // Initialize and add the map
     function initMap() {
+      fetch("http://localhost:8000/{{$empresa->id}}/getEmpresa")
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(data){
+
+        var contentString =
+            "<div id='content'>" +
+            "<div id='siteNotice'>" +
+            "</div>" +
+            "<h4 id='firstHeading' class='firstHeading'>"+ data.denominacion +"</h4>" +
+            "<div id='bodyContent'>" +
+            "<ul class='ulPopup'><li>Telefono:"+data.telefono +"</li><li>Domicilio:"+data.domicilio+ "</li><li>E-Mail:"+ data.email+"</li></ul>" +
+            "</div>" +
+            "</div>";
+        var popup = new google.maps.InfoWindow({
+            content: contentString
+        });
+        popup.open(map, marker);
+      })
         // The location of Uluru
         var uluru = {lat:{{$empresa->latitud}},lng:{{$empresa->longitud}}};
         // The map, centered at Uluru
@@ -190,18 +212,6 @@
             position: uluru,
             map: map
         });
-        var contentString = '<div id="content">' +
-            '<div id="siteNotice">' +
-            '</div>' +
-            '<h4 id="firstHeading" class="firstHeading">{{$empresa->denominacion}}</h4>' +
-            '<div id="bodyContent">' +
-            '<ul class"ulPopup"><li>Telefono: {{$empresa->telefono}}</li><li>Domicilio: {{$empresa->domicilio}}</li><li>E-Mail: {{$empresa->email}}</li></ul>' +
-            '</div>' +
-            '</div>';
-        var popup = new google.maps.InfoWindow({
-            content: contentString
-        });
-        popup.open(map, marker);
     }
 
 </script>

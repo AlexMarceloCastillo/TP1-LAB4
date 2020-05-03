@@ -15,6 +15,10 @@ Route::get('/','EmpresaController@listAllEmp');
 Route::get('/index','EmpresaController@listAllEmp');
 
 Route::get('/{id}/home','EmpresaController@homeEmp');
+Route::get('/{id}/getEmpresa', function ($id){
+$empresa = \App\Empresa::find($id);
+return response()->json($empresa);
+});
 /*      ABM      */
 Route::get('/abm/empresa','ABMController@listAllEmpresas');
 Route::get('/abm/noticia','ABMController@listAllNoticias');
