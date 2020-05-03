@@ -14,13 +14,13 @@
     <input type="hidden" name="id" value="{{$noticia->id}}">
     <label for="titulo">Nuevo titulo</label>
     <div class="input-group mb-3">
-        <input type="text" name="titulo" class="form-control" placeholder="Titulo de la noticia"
+        <input type="text" name="titulo" class="form-control"
             required value="{{$noticia->titulo}}">
     </div>
     <hr>
     <label for="resumen">Resumen</label>
     <div class="input-group mb-3">
-        <textarea name="resumen" rows="8" cols="80" required>{{$noticia->resumen}}</textarea>
+        <textarea name="resumen" rows="8" cols="50" required>{{$noticia->resumen}}</textarea>
     </div>
     <hr>
     <label for="imagen_noticia">Foto de la noticia</label>
@@ -51,7 +51,7 @@
     <hr>
     <label for="contenido_html"> <a href="/contenido" target="_blank">Contenido HTML Automatico</a> </label>
     <div class="input-group mb-3">
-        <textarea name="contenido_html" rows="8" cols="80" value=""></textarea>
+        <textarea name="contenido_html" rows="20" cols="50" value="">{{$noticia->contenido_html}}</textarea>
     </div>
     <hr>
     <p>Empresa Actual: {{$noticia->empresa->denominacion}}</p>
@@ -66,28 +66,29 @@
         </select>
     </div>
     <hr>
-    <div class="form-check">
+
       @if ($noticia->publicada == 'Y')
-      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios1" value="Y" checked>
+        <p>Publicada</p>
       @else
-      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios1" value="Y">
+        <p>No publicada</p>
       @endif
+    <div class="form-check">
+
       <label class="form-check-label" for="exampleRadios1">
         Publicar
       </label>
+      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios1" value="Y">
     </div>
+    <br>
     <div class="form-check">
-      @if ($noticia->publicada == 'N')
-      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios2" value="N" checked>
-      @else
+
+              <label class="form-check-label" for="exampleRadios2">
+              No publicar
+            </label>
       <input class="form-check-input" type="radio" name="publicar" id="exampleRadios2" value="N">
-      @endif
-      <label class="form-check-label" for="exampleRadios2">
-        No publicar
-      </label>
     </div>
     <hr>
-
+    <label for="fecha_publicacion">{{$noticia->created_at}} Publicacion Original</label>
     <div class="input-group mb-3">
         <input type="datetime-local" name="fecha_publicacion" class="form-control"
             required value="{{$noticia->fecha_publicacion}}">

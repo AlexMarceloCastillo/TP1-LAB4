@@ -35,17 +35,17 @@ $(".btn-submit-empresa").click(function(e){
         var tr =
         "<tr>"+
         "<td>"+data.id+"</td>"+
-        "<td>"+data.denominacion+"</td>"+
+        "<td><a href='/"+data.id+"/home'>"+ data.denominacion +"</a></td>"+
         "<td>"+data.telefono+"</td>"+
         "<td>"+data.hs_atencion+"</td>"+
-        "<td>"+"<td><button type='button' class='btn btn-info' name='button' data-toggle='modal' data-target='#q_Somos'  onclick='mostrarQuienesSomos("+ JSON.stringify(data) +")'>Ver</button></td>"++"</td>"+
+        "<td><button type='button' class='btn btn-info' name='button' data-toggle='modal' data-target='#q_Somos'  onclick='mostrarQuienesSomos("+ JSON.stringify(data)+")'>Ver</button></td>"+
         "<td>"+data.latitud+"</td>"+
         "<td>"+data.longitud+"</td>"+
         "<td>"+data.domicilio+"</td>"+
         "<td>"+data.email+"</td>"+
         "<td>"+
           "<div class='row'>"+
-            "<button type='button' onclick='borrarEmpresa("+data->id+",this)' name='button' class='btn-delete btn btn-danger'>Eliminar</button>"+
+            "<button type='button' onclick='borrarEmpresa("+data.id+",this)' name='button' class='btn-delete btn btn-danger'>Eliminar</button>"+
             "<hr>"+
             "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalEmpresa' onclick='editarEmpresa("+ JSON.stringify(data) +",this)'>Editar</button>"+
           "</div>"+
@@ -79,7 +79,7 @@ function editarEmpresa(empresa,boton){
    $("input[name=latitud]").val(empresa.latitud);
    $("input[name=longitud]").val(empresa.longitud);
    $("input[name=domicilio]").val(empresa.domicilio);
-   var email = $("input[name=email]").val(empresa.email);
+   $("input[name=email]").val(empresa.email);
    $(".modal-title").html("Actualizar Empresa");
     $(".btn-submit-empresa").hide();
     var botonActualizar ="<button type='submit' class='btn btn-warning btn-block my-3 btn-put-empresa'>Actualizar</button>";
@@ -108,16 +108,16 @@ function editarEmpresa(empresa,boton){
                   "<td>"+data.denominacion+"</td>"+
                   "<td>"+data.telefono+"</td>"+
                   "<td>"+data.hs_atencion+"</td>"+
-                  "<td><button type='button' class='btn btn-info' name='button' data-toggle='modal' data-target='#q_Somos'  onclick='mostrarQuienesSomos("+ JSON.stringify(data) +")'>Ver</button></td>"+
+                  "<td><button type='button' class='btn btn-info' name='button' data-toggle='modal' data-target='#q_Somos'  onclick='mostrarQuienesSomos("+ JSON.stringify(data) +")'>Ver</button>"+
                   "<td>"+data.latitud+"</td>"+
                   "<td>"+data.longitud+"</td>"+
                   "<td>"+data.domicilio+"</td>"+
                   "<td>"+data.email+"</td>"+
                   "<td>"+
                     "<div class='row'>"+
-                      "<button type='button' onclick='borrarEmpresa({{$empresa->id}},this)' name='button' class='btn-delete btn btn-danger'>Eliminar</button>"+
+                      "<button type='button' onclick='borrarEmpresa("+data.id+",this)' name='button' class='btn-delete btn btn-danger'>Eliminar</button>"+
                       "<hr>"+
-                      "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalEmpresa' onclick='editarEmpresa({{$empresa}},this)'>Editar</button>"+
+                      "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalEmpresa' onclick='editarEmpresa("+ JSON.stringify(data) +",this)>Editar</button>"+
                     "</div>"+
                   "</td>";
                 $(boton).closest('tr').html(td);
