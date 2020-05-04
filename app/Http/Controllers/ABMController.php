@@ -92,13 +92,16 @@ class ABMController extends Controller
        $noticia->titulo = $form['titulo'];
        $noticia->resumen = $form['resumen'];
        $noticia->contenido_html = $form['contenido_html'];
-       if(isset($form['imagen_noticia'])){
+       if($form['imagen_noticia'] != null){
        $path = $form->file('imagen_noticia')->store('public/img/noticias');
        $archivo = basename($path);
        $noticia->img = $archivo;
        }
        $noticia->publicada = $form['publicar'];
+       if($form['fecha_publicacion'] != null){
+        dd($form);
        $noticia->fecha_publicacion = $form['fecha_publicacion'];
+       }
        $noticia->empresa_id = $form['empresa'];
        $noticia->update();
        return redirect('/abm/noticia');
@@ -106,10 +109,8 @@ class ABMController extends Controller
    //Borrar Noticia
    public function borrarNoticia($id){
        $noticia = Noticia::findOrFail($id);
-       $notica->delete();
+       $noticia->delete();
        $response = array('status' => 'success','msg' => 'Element delete successfully',);
        return response()->json($response);
-       $noticia->delete();
-       return redirect('/abm/noticia')->with('message','ELIMINAR');
    }
 }

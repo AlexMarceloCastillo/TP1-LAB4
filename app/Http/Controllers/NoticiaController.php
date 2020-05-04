@@ -19,6 +19,5 @@ class NoticiaController extends Controller
             ->orderBy('id','desc')->paginate(1);
         $vac=compact('empresa','noticias','busqueda');
         return view('pages.paginas.busqueda',$vac);
-
     }
 }

@@ -57,7 +57,7 @@
     <p>Empresa Actual: {{$noticia->empresa->denominacion}}</p>
     <div class="input-group mb-3">
         <select name="empresa" required>
-              <option value="{{$noticia->empresa}}">{{$noticia->empresa->denominacion}}</option>
+              <option value="{{$noticia->empresa->id}}">{{$noticia->empresa->denominacion}}</option>
           @forelse ($empresas as $key => $empresa)
               <option value={{$empresa->id}}>{{$empresa->denominacion}}</option>
           @empty
@@ -73,25 +73,22 @@
         <p>No publicada</p>
       @endif
     <div class="form-check">
-
       <label class="form-check-label" for="exampleRadios1">
         Publicar
       </label>
-      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios1" value="Y">
+      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios1" value="Y" required checked>
     </div>
     <br>
     <div class="form-check">
-
-              <label class="form-check-label" for="exampleRadios2">
-              No publicar
-            </label>
-      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios2" value="N">
+          <label class="form-check-label" for="exampleRadios2">
+          No publicar
+        </label>
+      <input class="form-check-input" type="radio" name="publicar" id="exampleRadios2" value="N" required>
     </div>
     <hr>
     <label for="fecha_publicacion">{{$noticia->created_at}} Publicacion Original</label>
     <div class="input-group mb-3">
-        <input type="datetime-local" name="fecha_publicacion" class="form-control"
-            required value="{{$noticia->fecha_publicacion}}">
+        <input type="datetime-local" name="fecha_publicacion" class="form-control">
     </div>
     <button type="submit" class="btn btn-reg btn-lg btn-block my-3 ">Actualizar Noticia</button>
   </form>
